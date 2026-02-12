@@ -1,0 +1,1 @@
+# life_choices_e-commerce_project_backend
