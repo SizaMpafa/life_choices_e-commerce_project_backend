@@ -20,6 +20,7 @@
   "homepage": "https://github.com/SizaMpafa/life_choices_e-commerce_project_backend#readme",
   "dependencies": {
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "mysql2": "^3.17.0"
   }
