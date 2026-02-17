@@ -6,6 +6,7 @@ import { deleteCompanyCon, getCompaniesCon, insertCompanyCon, updateCompanyCon }
 import { deleteItemVariantCon, getItemVariantsCon, insertItemVariantCon, updateItemVariantCon } from './controllers/itemVariantsController.js';
 import { deleteOrderCon, getOrdersCon, insertOrderCon, updateOrderCon } from './controllers/ordersController.js';
 import { deleteOrderItemCon, getOrderItemsCon, insertOrderItemCon, updateOrderItemCon } from './controllers/orderItemsController.js';
+import { getPaymentsCon, insertPaymentCon } from './controllers/paymentscontroller.js';
 import { getCartCon, insertCartCon } from './controllers/cartController.js';
 import { deleteCartItemCon, getCartItemsCon, insertCartItemCon, updateCartItemCon } from './controllers/cartItemsController.js';
 
@@ -37,6 +38,8 @@ app.get('/order_items', getOrderItemsCon);
 app.post('/order_items', insertOrderItemCon);
 app.patch('/order_items/:order_item_id', updateOrderItemCon);
 app.delete('/order_items/:order_item_id', deleteOrderItemCon);
+app.get('/payments', getPaymentsCon);
+app.post('/payments', insertPaymentCon)
 app.get('/cart', getCartCon);
 app.post('/cart', insertCartCon);
 app.get('/cart_items', getCartItemsCon);
