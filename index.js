@@ -10,6 +10,8 @@ import { getPaymentsCon, insertPaymentCon } from './controllers/paymentscontroll
 import { getCartCon, insertCartCon } from './controllers/cartController.js';
 import { deleteCartItemCon, getCartItemsCon, insertCartItemCon, updateCartItemCon } from './controllers/cartItemsController.js';
 import { deletePaymentMethodCon, getPaymentMethodsCon, insertPaymentMethodCon, updatePaymentMethodCon } from './controllers/paymentMethodscontroller.js';
+import { deleteAddressCon, getAddressesCon, insertAddressCon, updateAddressCon } from './controllers/adressesController.js';
+import { deleteBankingDetailCon, getBankingDetailsCon, insertBankingDetailCon, updateBankingDetailcon } from './controllers/bankingDetailscontroller.js';
 
 const app = express();
 app.use(cors()) //cross origin resource sharing 
@@ -51,6 +53,14 @@ app.get('/cart_items', getCartItemsCon);
 app.post('/cart_items', insertCartItemCon);
 app.patch('/cart_items/:cart_item_id', updateCartItemCon);
 app.delete('/cart_items/:cart_item_id', deleteCartItemCon);
+app.get('/addresses', getAddressesCon);
+app.post('/adresses', insertAddressCon);
+app.patch('/addresses/:adress_id', updateAddressCon);
+app.delete('/adresses/:adress_id', deleteAddressCon);
+app.get('/bankingDetails', getBankingDetailsCon);
+app.post('bankingDetails', insertBankingDetailCon);
+app.patch('/bankingDetails/:banking_detail_id', updateBankingDetailcon);
+app.delete('/bankingDetails/:banking_detail_id', deleteBankingDetailCon);
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
