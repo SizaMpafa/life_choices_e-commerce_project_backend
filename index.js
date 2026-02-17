@@ -9,6 +9,7 @@ import { deleteOrderItemCon, getOrderItemsCon, insertOrderItemCon, updateOrderIt
 import { getPaymentsCon, insertPaymentCon } from './controllers/paymentscontroller.js';
 import { getCartCon, insertCartCon } from './controllers/cartController.js';
 import { deleteCartItemCon, getCartItemsCon, insertCartItemCon, updateCartItemCon } from './controllers/cartItemsController.js';
+import { deletePaymentMethodCon, getPaymentMethodsCon, insertPaymentMethodCon, updatePaymentMethodCon } from './controllers/paymentMethodscontroller.js';
 
 const app = express();
 app.use(cors()) //cross origin resource sharing 
@@ -42,6 +43,10 @@ app.get('/payments', getPaymentsCon);
 app.post('/payments', insertPaymentCon)
 app.get('/cart', getCartCon);
 app.post('/cart', insertCartCon);
+app.get('/payment_methods', getPaymentMethodsCon);
+app.post('/payment_methods', insertPaymentMethodCon);
+app.patch('/payment_methods/:payment_method_id', updatePaymentMethodCon);
+app.delete('/payment_methods/:payment_method_id', deletePaymentMethodCon);
 app.get('/cart_items', getCartItemsCon);
 app.post('/cart_items', insertCartItemCon);
 app.patch('/cart_items/:cart_item_id', updateCartItemCon);
