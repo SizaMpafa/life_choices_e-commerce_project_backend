@@ -1,5 +1,9 @@
 import express from 'express'
 import cors from 'cors'
+import userRoutes from "./routes/userRoutes.js"
+import itemRoutes from "./routes/itemRoutes.js"
+import categoryRoutes from "./routes/categoryRoutes.js"
+import companyRoutes from "./routes/companyRoutes.js"
 import { deleteCategoryCon, getCategoriesCon, insertCategoryCon, updateCategoryCon } from './controllers/categoriesController.js';
 import { deleteItemCon, getItemsCon, insertItemCon, updateItemCon } from './controllers/itemsController.js';
 import { deleteCompanyCon, getCompaniesCon, insertCompanyCon, updateCompanyCon } from './controllers/companiesController.js';
@@ -17,18 +21,12 @@ const app = express();
 app.use(cors()) //cross origin resource sharing 
 app.use(express.json())
 const port = 5490
-app.get('/categories', getCategoriesCon);
-app.post('/categories', insertCategoryCon);
-app.patch('/categories/:category_id', updateCategoryCon);
-app.delete('/categories/:category_id', deleteCategoryCon);
-app.get('/items', getItemsCon);
-app.post('/items', insertItemCon);
-app.patch('/items/:item_id', updateItemCon);
-app.delete('/items/:item_id', deleteItemCon);
-app.get('/companies', getCompaniesCon);
-app.post('/companies', insertCompanyCon);
-app.patch('/companies/:company_id', updateCompanyCon);
-app.delete('/companies/:company_id', deleteCompanyCon);
+
+app.use("/items", itemRoutes)
+app.use("/categories", categoryRoutes)
+app.use("/companies", companyRoutes)
+
+
 app.get('/item_variants', getItemVariantsCon);
 app.post('/item_variants', insertItemVariantCon);
 app.patch('/item_variants/:item_variant_id', updateItemVariantCon);
@@ -61,6 +59,7 @@ app.get('/bankingDetails', getBankingDetailsCon);
 app.post('bankingDetails', insertBankingDetailCon);
 app.patch('/bankingDetails/:banking_detail_id', updateBankingDetailcon);
 app.delete('/bankingDetails/:banking_detail_id', deleteBankingDetailCon);
+app.use("/users", userRoutes)
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
