@@ -4,6 +4,15 @@ import userRoutes from "./routes/userRoutes.js"
 import itemRoutes from "./routes/itemRoutes.js"
 import categoryRoutes from "./routes/categoryRoutes.js"
 import companyRoutes from "./routes/companyRoutes.js"
+import itemVariantRoutes from "./routes/itemVariantRoutes.js"
+import orderRoutes from "./routes/orderRoutes.js"
+import orderItemRoutes from "./routes/orderItemRoutes.js"
+import paymentRoutes from "./routes/paymentRoutes.js"
+import cartRoutes from "./routes/cartRoutes.js"
+import cartItemRoutes from "./routes/cartItemRoutes.js"
+import paymentMethodRoutes from "./routes/paymentMethodRoutes.js"
+import addressRoutes from "./routes/addressRoutes.js"
+import bankingDetailsRoutes from "./routes/bankingDetailsRoutes.js"
 import { deleteCategoryCon, getCategoriesCon, insertCategoryCon, updateCategoryCon } from './controllers/categoriesController.js';
 import { deleteItemCon, getItemsCon, insertItemCon, updateItemCon } from './controllers/itemsController.js';
 import { deleteCompanyCon, getCompaniesCon, insertCompanyCon, updateCompanyCon } from './controllers/companiesController.js';
@@ -22,44 +31,27 @@ app.use(cors()) //cross origin resource sharing
 app.use(express.json())
 const port = 5490
 
+app.use("/users", userRoutes)
 app.use("/items", itemRoutes)
 app.use("/categories", categoryRoutes)
 app.use("/companies", companyRoutes)
+app.use("/item_variants", itemVariantRoutes)
+app.use("/orders", orderRoutes)
+app.use("/order_items", orderItemRoutes)
+app.use("/payments", paymentRoutes)
+app.use("/cart", cartRoutes)
+app.use("/cart_items", cartItemRoutes)
+app.use("/payment_methods", paymentMethodRoutes)
+app.use("/addresses", addressRoutes)
+app.use("/banking_details", bankingDetailsRoutes)
 
 
-app.get('/item_variants', getItemVariantsCon);
-app.post('/item_variants', insertItemVariantCon);
-app.patch('/item_variants/:item_variant_id', updateItemVariantCon);
-app.delete('/item_variants/:item_variant_id', deleteItemVariantCon);
-app.get('/orders', getOrdersCon);
-app.post('/orders', insertOrderCon);
-app.patch('/orders/:order_id', updateOrderCon);
-app.delete('/orders/:order_id', deleteOrderCon);
-app.get('/order_items', getOrderItemsCon);
-app.post('/order_items', insertOrderItemCon);
-app.patch('/order_items/:order_item_id', updateOrderItemCon);
-app.delete('/order_items/:order_item_id', deleteOrderItemCon);
-app.get('/payments', getPaymentsCon);
-app.post('/payments', insertPaymentCon)
-app.get('/cart', getCartCon);
-app.post('/cart', insertCartCon);
-app.get('/payment_methods', getPaymentMethodsCon);
-app.post('/payment_methods', insertPaymentMethodCon);
-app.patch('/payment_methods/:payment_method_id', updatePaymentMethodCon);
-app.delete('/payment_methods/:payment_method_id', deletePaymentMethodCon);
-app.get('/cart_items', getCartItemsCon);
-app.post('/cart_items', insertCartItemCon);
-app.patch('/cart_items/:cart_item_id', updateCartItemCon);
-app.delete('/cart_items/:cart_item_id', deleteCartItemCon);
-app.get('/addresses', getAddressesCon);
-app.post('/adresses', insertAddressCon);
-app.patch('/addresses/:adress_id', updateAddressCon);
-app.delete('/adresses/:adress_id', deleteAddressCon);
-app.get('/bankingDetails', getBankingDetailsCon);
-app.post('bankingDetails', insertBankingDetailCon);
-app.patch('/bankingDetails/:banking_detail_id', updateBankingDetailcon);
-app.delete('/bankingDetails/:banking_detail_id', deleteBankingDetailCon);
-app.use("/users", userRoutes)
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
