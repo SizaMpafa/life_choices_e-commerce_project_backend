@@ -1,5 +1,5 @@
 import express from "express"
-import { deleteItemVariantCon, getItemVariantsCon, insertItemVariantCon, updateItemVariantCon } from "../controllers/itemVariantsController";
+import { deleteItemVariantCon, getItemVariantsCon, insertItemVariantCon, updateItemVariantCon } from "../controllers/itemVariantsController.js";
 
 
 const router = express.Router()

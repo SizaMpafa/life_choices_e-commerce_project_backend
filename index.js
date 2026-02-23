@@ -13,18 +13,6 @@ import cartItemRoutes from "./routes/cartItemRoutes.js"
 import paymentMethodRoutes from "./routes/paymentMethodRoutes.js"
 import addressRoutes from "./routes/addressRoutes.js"
 import bankingDetailsRoutes from "./routes/bankingDetailsRoutes.js"
-import { deleteCategoryCon, getCategoriesCon, insertCategoryCon, updateCategoryCon } from './controllers/categoriesController.js';
-import { deleteItemCon, getItemsCon, insertItemCon, updateItemCon } from './controllers/itemsController.js';
-import { deleteCompanyCon, getCompaniesCon, insertCompanyCon, updateCompanyCon } from './controllers/companiesController.js';
-import { deleteItemVariantCon, getItemVariantsCon, insertItemVariantCon, updateItemVariantCon } from './controllers/itemVariantsController.js';
-import { deleteOrderCon, getOrdersCon, insertOrderCon, updateOrderCon } from './controllers/ordersController.js';
-import { deleteOrderItemCon, getOrderItemsCon, insertOrderItemCon, updateOrderItemCon } from './controllers/orderItemsController.js';
-import { getPaymentsCon, insertPaymentCon } from './controllers/paymentscontroller.js';
-import { getCartCon, insertCartCon } from './controllers/cartController.js';
-import { deleteCartItemCon, getCartItemsCon, insertCartItemCon, updateCartItemCon } from './controllers/cartItemsController.js';
-import { deletePaymentMethodCon, getPaymentMethodsCon, insertPaymentMethodCon, updatePaymentMethodCon } from './controllers/paymentMethodscontroller.js';
-import { deleteAddressCon, getAddressesCon, insertAddressCon, updateAddressCon } from './controllers/adressesController.js';
-import { deleteBankingDetailCon, getBankingDetailsCon, insertBankingDetailCon, updateBankingDetailcon } from './controllers/bankingDetailscontroller.js';
 
 const app = express();
 app.use(cors()) //cross origin resource sharing 
@@ -44,13 +32,6 @@ app.use("/cart_items", cartItemRoutes)
 app.use("/payment_methods", paymentMethodRoutes)
 app.use("/addresses", addressRoutes)
 app.use("/banking_details", bankingDetailsRoutes)
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)

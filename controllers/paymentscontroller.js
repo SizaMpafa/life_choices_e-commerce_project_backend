@@ -1,4 +1,4 @@
-import { getPaymentsDb, insertPaymentDb } from "../models/paymentsDb"
+import { getPaymentsDb, insertPaymentDb } from "../models/paymentsDb.js"
 
 const getPaymentsCon = async (req, res) => {
     res.json({payments: await getPaymentsDb()})
