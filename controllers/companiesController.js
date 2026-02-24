@@ -1,6 +1,10 @@
-import { deleteCompanyDb, getCompaniesDb, insertCompanyDb, updateCompanyDb } from "../models/companiesDb.js"
+import { deleteCompanyDb, getCompaniesDb, getCompanyDb, insertCompanyDb, updateCompanyDb } from "../models/companiesDb.js"
 const getCompaniesCon = async (req, res) => {
     res.json({companies: await getCompaniesDb()})
+}
+const getCompanyCon = async (req, res) => {
+    const {company_id} = req.params
+    res.json({company: await getCompanyDb(company_id)})
 }
 const insertCompanyCon = async (req, res) => {
     let {name, logo, longitude, latitude} = req.body
@@ -20,5 +24,5 @@ const deleteCompanyCon = async (req, res) => {
     await deleteCompanyDb(company_id)
     res.json({companies: await getCompaniesDb()})
 }
-export {getCompaniesCon, insertCompanyCon, updateCompanyCon, deleteCompanyCon}
+export {getCompaniesCon, insertCompanyCon, updateCompanyCon, deleteCompanyCon, getCompanyCon}
 

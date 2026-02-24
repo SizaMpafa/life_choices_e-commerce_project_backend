@@ -4,6 +4,10 @@ const getCompaniesDb = async () => {
     let [data] = await pool.query('SELECT * FROM companies')
     return data
 }
+const getCompanyDb = async (company_id) => {
+    let [data] = await pool.query('SELECT longitude, latitude FROM companies WHERE (company_id = ?)', [company_id])
+    return data[0]
+}
 const insertCompanyDb = async (
   name, 
   logo, 
@@ -46,7 +50,7 @@ const updateCompanyDb = async (company_id, updates) => {
   values.push(company_id)
 
   const query =  `
-    UPDATE items 
+    UPDATE companies 
     SET ${fields.join(", ")} 
     WHERE (company_id = ?);
     `
@@ -58,4 +62,4 @@ const deleteCompanyDb = async (company_id) =>{
     return data
 }
 
-export {getCompaniesDb, insertCompanyDb, updateCompanyDb, deleteCompanyDb}
+export {getCompaniesDb, insertCompanyDb, updateCompanyDb, deleteCompanyDb, getCompanyDb}
