@@ -1,4 +1,4 @@
-import { registerUserDb, loginUserDb } from "../models/userDb.js"
+import { registerUserDb, loginUserDb, getProfileDb } from "../models/userDb.js"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
@@ -46,7 +46,7 @@ const loginUserCon = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.user_id, role: user.role },
+      { user_id: user.user_id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "2h" }
     )
@@ -54,7 +54,7 @@ const loginUserCon = async (req, res) => {
     res.json({
       token,
       user: {
-        id: user.user_id,
+        user_id: user.user_id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
@@ -67,4 +67,21 @@ const loginUserCon = async (req, res) => {
   }
 }
 
-export { registerUserCon, loginUserCon }
+const getProfileCon = async (req, res) => {
+  try {
+    const { user_id } = req.user
+
+    const user = await getProfileDb(user_id)
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" })
+    }
+
+    res.json(user)
+
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+export { registerUserCon, loginUserCon, getProfileCon }
