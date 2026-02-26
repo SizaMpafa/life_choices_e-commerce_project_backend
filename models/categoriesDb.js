@@ -13,7 +13,7 @@ const insertCategoryDb = async (name) => {
   return data
 }
 const updateCategoryDb = async (category_id, name) => {
-  const [data] = await pool.query(`UPDATE categories SET name = ? WHERE (category_id = ?);`,[category_id, name]
+  const [data] = await pool.query(`UPDATE categories SET name = ? WHERE (category_id = ?);`,[name, category_id]
   )
   return data
 }
