@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: impulsive_shopping_db
 -- ------------------------------------------------------
--- Server version	8.0.44
+-- Server version	8.0.40
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -156,7 +156,7 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,6 +165,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (2,'Equipment','2026-02-26 14:04:00','2026-02-26 14:04:00'),(3,'Clothing','2026-02-26 14:04:14','2026-02-26 14:04:14'),(4,'Appliances','2026-02-26 14:04:23','2026-02-26 14:04:23');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,14 +180,14 @@ CREATE TABLE `companies` (
   `company_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `longitude` decimal(10,0) NOT NULL,
-  `latitude` decimal(10,0) NOT NULL,
+  `longitude` float NOT NULL,
+  `latitude` float NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`company_id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `logo_UNIQUE` (`logo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,6 +196,7 @@ CREATE TABLE `companies` (
 
 LOCK TABLES `companies` WRITE;
 /*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (1,'S2PHA','https://lh3.googleusercontent.com/gps-cs-s/AHVAwerXkzLnSaSIpvO-mnQsjj4jF1si3JAGhlcQyp1Xi8HsCT6m6DIGYqaeYXRyM-xx9o_VikvPC3-tfSkTKO-1NfBhhmQhjE9uHxMqEOsjUr1qrUHv1SJhkBMnXTSOrEzUOTIJk1cu=s1360-w1360-h1020-rw',34.0042,18.5778,'2026-02-26 12:16:01','2026-02-26 13:46:04'),(2,'OutFoot','https://i.pinimg.com/736x/9e/7c/4d/9e7c4d19dbf7f4cfb17ad11b8858026f.jpg',34.0042,18.5778,'2026-02-26 13:54:17','2026-02-26 13:54:17'),(3,'Shumani Industrial','https://shumani-industrial.co.za/wp-content/uploads/2024/05/HPVR-1000-Liq-Ring-brochure-Dec-2023-v2.png',28.1686,-26.0847,'2026-02-26 13:59:57','2026-02-26 13:59:57');
 /*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +252,7 @@ CREATE TABLE `items` (
   KEY `fk_company_id_idx` (`company_id`),
   CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
   CONSTRAINT `fk_company_id` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,6 +261,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items` VALUES (1,'S2PHA Hoodie',550.00,'http://localhost:5490/uploads/1772176923864.jpg',6,3,1,'2026-02-27 07:16:44','2026-02-27 07:22:03'),(2,'Forklift',5000.00,'http://localhost:5490/uploads/1772177337532.jpg',2,2,3,'2026-02-27 07:28:57','2026-02-27 07:28:57'),(3,'Generator',3000.00,'http://localhost:5490/uploads/1772177878595.jpg',1,2,3,'2026-02-27 07:37:58','2026-02-27 07:37:58'),(4,'Vacuum Truck',100000.00,'http://localhost:5490/uploads/1772177947405.png',1,2,3,'2026-02-27 07:39:07','2026-02-27 07:39:07'),(5,'OUTFOOT Hiking Shoe',1500.00,'http://localhost:5490/uploads/1772178006603.jpg',5,3,2,'2026-02-27 07:40:06','2026-02-27 07:44:12'),(6,'OUTFOOT Hiking Boot',2500.00,'http://localhost:5490/uploads/1772178054895.jpg',5,3,2,'2026-02-27 07:40:54','2026-02-27 07:43:42'),(7,'House Combo Appliances',100000.00,'http://localhost:5490/uploads/1772178082069.jpg',2,4,3,'2026-02-27 07:41:22','2026-02-27 07:42:45'),(8,'S2PHA T-Shirt',280.00,'http://localhost:5490/uploads/1772178344505.jpg',10,3,1,'2026-02-27 07:45:44','2026-02-27 07:45:44'),(9,'S2PHA Sweater',480.00,'http://localhost:5490/uploads/1772178375669.jpg',3,3,1,'2026-02-27 07:46:15','2026-02-27 07:46:15'),(10,'S2PHA Beanie',1300.00,'http://localhost:5490/uploads/1772178412041.jpg',15,3,1,'2026-02-27 07:46:52','2026-02-27 07:46:52');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +413,7 @@ CREATE TABLE `users` (
   `role` enum('Admin','Customer') NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +422,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Siza','Mpafa','sizampafa972@gmail.com',815660238,'2026-02-23 04:03:35','2026-02-23 04:07:00','Admin','$2b$10$V7BH/E4vjnFkBlh4k.PHSuXn1KcDbXP.s.yo1Wkqfvzk4ZipOeV0q');
+INSERT INTO `users` VALUES (1,'Siza','Mpafa','sizampafa972@gmail.com',815660238,'2026-02-23 04:03:35','2026-02-23 04:07:00','Admin','$2b$10$V7BH/E4vjnFkBlh4k.PHSuXn1KcDbXP.s.yo1Wkqfvzk4ZipOeV0q'),(2,'Storm','Petersen','stormpetersen@gmail.com',123456789,'2026-02-26 12:03:10','2026-02-26 12:03:10','Admin','$2b$10$KygjCb80tI7f58oel0eyiOv.A79LdquHCwXtgOIn77jJzIXcF2cJi');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -432,4 +435,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-23 10:26:51
+-- Dump completed on 2026-02-27 12:01:44
