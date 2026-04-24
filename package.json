@@ -1,7 +1,7 @@
 {
   "name": "life_choices_e-commerce_project_backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository contains both the frontend and backend for the Life Choices e-commerce application.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,5 +26,6 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.0.2",
     "mysql2": "^3.17.0"
-  }
+  },
+  "devDependencies": {}
 }

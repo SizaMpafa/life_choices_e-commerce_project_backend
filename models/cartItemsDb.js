@@ -1,9 +1,12 @@
 import { pool } from "../config/config.js"
 
-const getCartItemsDb = async () => {
-    let [data] = await pool.query('SELECT * FROM cart_items')
+// Get cart items for a specific cart ONLY
+const getCartItemsDb = async (cart_id) => {
+    let [data] = await pool.query('SELECT * FROM cart_items WHERE cart_id = ?', [cart_id])
     return data
 }
+
+// Insert new cart item
 const insertCartItemDb = async (
   quantity,
   cart_id,
@@ -17,7 +20,13 @@ const insertCartItemDb = async (
   return data
 }
 
+// Verify ownership before updating (helper)
+const getCartItemDb = async (cart_item_id) => {
+  let [data] = await pool.query('SELECT * FROM cart_items WHERE cart_item_id = ?', [cart_item_id])
+  return data[0] || null
+}
 
+// Update cart item
 const updateCartItemDb = async (cart_item_id, updates) => {
   const fields = []
   const values = []
@@ -31,6 +40,7 @@ const updateCartItemDb = async (cart_item_id, updates) => {
     fields.push("cart_id = ?")
     values.push(updates.cart_id)
   }
+  
   if (updates.item_id) {
     fields.push("item_id = ?")
     values.push(updates.item_id)
@@ -49,13 +59,14 @@ const updateCartItemDb = async (cart_item_id, updates) => {
     UPDATE cart_items 
     SET ${fields.join(", ")} 
     WHERE (cart_item_id = ?);
-    `
+  `
   await pool.query(query, values)
 }
 
-const deleteCartItemDb = async (cart_item_id) =>{
+// Delete cart item
+const deleteCartItemDb = async (cart_item_id) => {
     let [data] = await pool.query('DELETE FROM `cart_items` WHERE (`cart_item_id` = ?);', [cart_item_id])
     return data
 }
 
-export {getCartItemsDb, insertCartItemDb, updateCartItemDb, deleteCartItemDb}
+export { getCartItemsDb, getCartItemDb, insertCartItemDb, updateCartItemDb, deleteCartItemDb }
