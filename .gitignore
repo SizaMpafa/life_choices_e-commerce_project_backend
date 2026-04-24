@@ -1,2 +1,4 @@
-.env
+db/*.sql
 node_modules/
+uploads/
+.env
