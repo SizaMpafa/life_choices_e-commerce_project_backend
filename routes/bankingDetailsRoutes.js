@@ -1,6 +1,6 @@
 import express from "express"
 
-import { deleteBankingDetailCon, getBankingDetailsCon, insertBankingDetailCon, updateBankingDetailcon } from "../controllers/bankingDetailscontroller.js";
+import { deleteBankingDetailCon, getBankingDetailsCon, insertBankingDetailCon, updateBankingDetailcon } from "../controllers/bankingDetailsController.js";
 
 const router = express.Router()
 
