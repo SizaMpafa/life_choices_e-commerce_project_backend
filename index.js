@@ -17,7 +17,7 @@ import bankingDetailsRoutes from "./routes/bankingDetailsRoutes.js"
 const app = express();
 app.use(cors()) //cross origin resource sharing 
 app.use(express.json())
-const port = 5490
+const port = process.env.PORT || 5490
 app.use("/uploads", express.static("uploads"))
 app.use("/users", userRoutes)
 app.use("/items", itemRoutes)
