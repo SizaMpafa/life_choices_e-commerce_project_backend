@@ -33,6 +33,16 @@ app.use("/payment_methods", paymentMethodRoutes)
 app.use("/addresses", addressRoutes)
 app.use("/banking_details", bankingDetailsRoutes)
 
+app.get("/test", async (req, res) => {
+  try {
+    const { pool } = await import("./config/config.js")
+    const [rows] = await pool.query("SELECT 1")
+    res.json({ status: "ok", db: "connected" })
+  } catch (err) {
+    res.json({ status: "error", message: err.message })
+  }
+})
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
